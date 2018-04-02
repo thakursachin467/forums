@@ -1,0 +1,46 @@
+<h1>Add post</h1>
+
+<div class="row">
+  <form class="col s12" action="/posts" method="post">
+      <div class="row">
+        <div class="input-field">
+          <input type="text" name="title">
+          <label>Title</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="input-field">
+          <select  name="status">
+            <option value="public" selected>Public</option>
+            <option value="private">Private</option>
+          </select>
+          <label>status</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <p>
+          <input type="checkbox" name="allowcomments" class="filled-in" id="filled-in-box" checked="checked">
+            <label for="filled-in-box">allow comments</label>
+        </p>
+
+      </div>
+
+
+      <div class="row">
+        <div class="input-field">
+          <h5>Your Post</h5>
+          <textarea name="body"></textarea>
+
+        </div>
+
+      </div>
+
+        <input type="submit" class="btn" value="save">
+
+  </form>
+
+</div>

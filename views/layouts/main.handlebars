@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Forums</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+    <link rel="stylesheet" href="/assests/css/style.css">
+       <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+  </head>
+  <body>
+    {{> _header}}
+
+      {{#if user}}
+          {{> _floating}}
+
+      {{else}}
+
+
+      {{/if}}
+    <main>
+    <div class="container">
+
+
+      {{{body}}}
+
+</div>
+</main>
+
+{{> _footer}}
+     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+     <script type="text/javascript">
+     (function(){
+
+     $(".button-collapse").sideNav();
+
+     $('.button-collapse').sideNav({
+     menuWidth: 300, // Default is 300
+     edge: 'left', // Choose the horizontal origin
+     closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+     draggable: true // Choose whether you can drag to open on touch screens
+     }
+     );
+
+     })();
+
+     $('select').material_select();
+     CKEDITOR.replace( 'body',{
+        plugins:'wysiwygarea,toolbar,basicstyles,link'
+     } );
+     </script>
+
+
+
+  </body>
+</html>

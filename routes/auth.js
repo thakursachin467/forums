@@ -9,10 +9,10 @@ module.exports = function(app) {
 
 
       app.get( '/oauth/google/callback',
-    passport.authenticate( 'google', {
-        successRedirect: '/dashboard ',
-        failureRedirect: '/'
-}));
+    passport.authenticate( 'google',{ failureRedirect: '/' }),(req, res) => {
+    res.redirect('/dashboard');
+  }
+);
 
 app.get('/logout',(req,res)=>{
       req.logout();
