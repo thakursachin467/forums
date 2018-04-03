@@ -1,4 +1,5 @@
 const {ensureAuthenticated,ensureGuest}= require('../helpers/auth');
+var posts =require('../models/post');
 
 module.exports = function(app){
   //home page
@@ -7,7 +8,14 @@ module.exports = function(app){
   });
 
   app.get('/dashboard',ensureAuthenticated,(req,res)=>{
-         res.render('index/dashboard');
+          posts.find({user:req.user.id})
+          .then((data)=>{
+                 res.render('index/dashboard',{
+                   data:data
+                 });
+                
+          })
+
   });
 
 

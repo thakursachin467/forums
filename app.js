@@ -9,6 +9,8 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser');
 var passport= require('passport');
 var passportConfig= require('./config/passport');
+var methodOverride = require('method-override');
+const {truncate,striptag,formatdate}=require('./helpers/hbs');
 var app= express();
 var port= process.env.PORT || 5000;
 
@@ -17,7 +19,13 @@ var port= process.env.PORT || 5000;
 app.use('/assests',express.static(__dirname +'/public'));
 
 //handlebars middleware
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({
+  helpers:{
+    truncate:truncate,
+    striptags:striptag,
+    formatdate:formatdate
+  },
+  defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 //cookie parser middleware
@@ -40,7 +48,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-
+app.use(methodOverride('_method'))
 
 //set global var
 

@@ -6,4 +6,23 @@ body {
 
   main {
     flex: 1 0 auto;
-  } 
+  }
+
+
+.story-text{
+  height: 100px;
+}
+
+
+.mb {
+  margin-bottom: 10%;
+}
+
+.status {
+  text-transform: capitalize;
+}
+
+
+#delete-form {
+  display: inline;
+}

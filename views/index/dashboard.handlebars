@@ -1,4 +1,48 @@
 <h1>Welcome {{user.firstname}}</h1>
+<h4>Your Stories</h4>
+<div class="mb">
+      <table class="striped">
+
+          <thead>
+            <th>
+              Title
+            </th>
+            <th>
+              Date
+            </th>
+            <th>
+              Status
+            </th>
+            <th>
+
+            </th>
+          </thead>
+          <tbody>
+            {{#each data}}
+                <tr>
+                  <td> <a href="/posts/show/{{_id}}"> {{title}} </a> </td>
+                  <td>{{formatdate date 'MMMM Do YYYY'}}</td>
+                  <td> <span class="status">{{status}}</span> </td>
+                  <td> <a href="/posts/edit/{{_id}}" class="btn left-align"><i class="fa fa-pencil"></i>edit</a>
+                    <form action="/posts/{{_id}}?_method=DELETE" method="post" id="delete-form">
+                      <input type="hidden" name="_method" value="PUT">
+                      <button type="submit" name="button" class="btn red"><i class="fa fa-remove"></i>Delete</button>
+                    </form>
+
+                 </td>
+                </tr>
+            {{/each}}
+          </tbody>
 
 
-<h1>Your stories</h1>
+      </table>
+      </div>
+
+{{#if data}}
+
+
+
+{{else}}
+<p>You Have not posted any  posts</p>
+
+{{/if}}

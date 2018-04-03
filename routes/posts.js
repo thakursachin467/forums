@@ -19,14 +19,54 @@ module.exports = function(app) {
 
           });
 
-          app.get('/posts/show',ensureAuthenticated,(req,res)=>{
-
+          app.get('/posts/show/:id',(req,res)=>{
+                        posts.findOne({_id:req.params.id})
+                        .populate('user')
+                        .then((data)=>{
+                          res.render('posts/show',{
+                            data:data
+                          });
+                        });
 
           });
 
-          app.get('/posts/edit',ensureAuthenticated,(req,res)=>{
-                
+          app.get('/posts/edit/:id',ensureAuthenticated,(req,res)=>{
+                  posts.findOne({_id:req.params.id})
+                  .then((data)=>{
+                    res.render('posts/edit',{
+                      data:data
+                    })
+                  });
 
+          });
+
+
+          app.put('/posts/edit/:id',ensureAuthenticated,(req,res)=>{
+                  let allowComment;
+                    if(req.body.allowcomments){
+                        allowComment=true;
+                        } else {
+                          allowComment=false;
+                        }
+                    posts.findOneAndUpdate(req.params.id,{
+                    title:req.body.title,
+                    allowComments:allowComment,
+                    status:req.body.status,
+                    body:req.body.body,
+                    user:req.user._id
+                  })
+                  .then((data)=>{
+                      res.redirect('/posts');
+                  });
+
+          });
+
+
+          app.delete('/posts/:id',ensureAuthenticated, (req,res)=>{
+                  posts.findOneAndRemove(req.params.id)
+                  .then(()=>{
+                      res.redirect('/dashboard');
+                  });
           });
 
           app.get('/posts/add',ensureAuthenticated,(req,res)=>{

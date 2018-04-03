@@ -5,12 +5,14 @@
 <div class="col s12 m4">
 <div class="card">
   <div class="card-image">
-
-  <a href="/posts/edit/{{id}}" class="btn-floating halfway-fab red"><i class="material-icons" >create</i></a>
+    {{#if req.user}}
+  <a href="/posts/edit/{{_id}}" class="btn-floating halfway-fab red"><i class="material-icons" >create</i></a>
+  {{else}}
+  {{/if}}
   </div>
   <div class="card-content center-align">
-    <h4>{{title}}</h4>
-    <p class="story-text">{{body}}</p>
+    <h5>{{title}}</h5>
+    <p class="story-text">{{striptags (truncate body 100)}}</p>
     <br>
     <div class="chip">
       <img src="{{user.image}}">
@@ -18,9 +20,9 @@
     </div>
   </div>
     <div class="card-action center-align">
-      <div class="btn grey" href="/posts/show/{{id}}">
+      <a class="btn grey" href="/posts/show/{{_id}}">
           Read More
-      </div>
+      </a>
     </div>
 </div>
 </div>
