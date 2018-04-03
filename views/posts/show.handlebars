@@ -8,6 +8,45 @@
       </div>
 
     </div>
+    {{#if data.allowComments}}
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Comments</span>
+        {{#if user}}
+            <form class="" action="/posts/comment/{{data._id}}" method="post">
+                  <div class="input-field">
+                      <textarea name="commentbody" rows="8" class="materialize-textarea "></textarea>
+                      <label >Add comment</label>
+                  </div>
+                  <input type="submit" value="submit" class="btn">
+            </form>
+        {{else}}
+
+          <p>please <a href="/auth/google">login</a> to leave a comment</p>
+          {{/if}}
+      </div>
+
+    </div>
+
+    {{else}}
+        <h4>Comments are disabled</h4>
+    {{/if}}
+    {{#each data.comments}}
+
+    <div class="card">
+       <div class="card-content">
+         <h5>{{commentbody}}</h5>
+         <div class="chip">
+           <img src="{{commentuser.image}}">
+           {{commentuser.firstname}} {{commentuser.lastname}}
+         </div>
+         <br>
+         <small>Posted on:{{formatdate commentdate 'MMMM Do YYYY h:mm a'}}</small>
+       </div>
+    </div>
+
+
+    {{/each}}
   </div>
   <div class="col s12 m4">
     <div class="card center-align">

@@ -22,6 +22,7 @@ module.exports = function(app) {
           app.get('/posts/show/:id',(req,res)=>{
                         posts.findOne({_id:req.params.id})
                         .populate('user')
+                        .populate('comments.commentuser')
                         .then((data)=>{
                           res.render('posts/show',{
                             data:data
@@ -95,6 +96,32 @@ module.exports = function(app) {
 
                   res.redirect(`/posts/show/${data._id}`);
                 })
+
+          });
+
+
+          app.post('/posts/comment/:id',(req,res)=>{
+                      posts.findOne({_id:req.params.id})
+                      .then((data)=>{
+
+                        const newcomment ={
+
+                              commentbody:req.body.commentbody,
+                              commentuser:req.user.id
+                            }
+
+                          data.comments.unshift(newcomment);
+                          data.save()
+                          .then((data1)=>{
+                                res.redirect(`/posts/show/${data._id}`);
+                          });
+
+                     });
+
+
+
+
+
 
           });
 }

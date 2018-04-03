@@ -17,7 +17,7 @@ module.exports = function(app) {
 app.get('/logout',(req,res)=>{
       req.logout();
     //  req.flash('success_msg','you are logout');
-      res.redirect('/login');
+      res.redirect('/');
 
 });
 
