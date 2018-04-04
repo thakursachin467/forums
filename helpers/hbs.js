@@ -15,9 +15,9 @@ module.exports={
 
     },
     formatdate:function(date,format) {
-          var stillUtc = moment.utc(date).toDate();
-          var local = moment(stillUtc).local().format(format);
+          return moment(date).utcOffset("+05:30").format(format);
+          //var local = moment(stillUtc).local().format(format);
           //return moment(date).format(format);
-          return local;
+          //return local;
     }
 }
