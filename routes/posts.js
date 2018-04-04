@@ -5,6 +5,7 @@ module.exports = function(app) {
           app.get('/posts',(req,res)=>{
                 posts.find({status:'public'})
                 .populate('user')
+                .sort({date:'desc'})
                 .then((data)=>{
 
                     res.render('posts/index',{
@@ -18,17 +19,27 @@ module.exports = function(app) {
                 posts.find({user:req.params.id})
                 .populate('user')
                 .then((data)=>{
-                    console.log(data);
+
                     res.render('posts/user',{
                       data:data
                     });
                 });
           });
 
-          app.get('/posts/my',ensureAuthenticated,(req,res)=>{
+          app.get('/posts/my/:id',ensureAuthenticated,(req,res)=>{
+                posts.find({user:req.params.id})
+                .populate('user')
+                .sort({date:'desc'})
+                .then((data)=>{
+                  
+                  res.render('posts/my',{
+                    data:data
+                  });
+                });
+
+                });
 
 
-          });
 
           app.get('/posts/show/:id',(req,res)=>{
                         posts.findOne({_id:req.params.id})
@@ -45,9 +56,14 @@ module.exports = function(app) {
           app.get('/posts/edit/:id',ensureAuthenticated,(req,res)=>{
                   posts.findOne({_id:req.params.id})
                   .then((data)=>{
-                    res.render('posts/edit',{
-                      data:data
-                    })
+                    if(data.user != req.user.id){
+                      res.render('/posts');
+                    }else {
+                      res.render('posts/edit',{
+                        data:data
+                      });
+                    }
+
                   });
 
           });

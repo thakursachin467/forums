@@ -3,7 +3,7 @@
 
 {{#each posts}}
 <div class="col s12 m4">
-<div class="card">
+<div class="card ">
   <div class="card-image">
     {{#if req.user}}
   <a href="/posts/edit/{{_id}}" class="btn-floating halfway-fab red"><i class="material-icons" >create</i></a>
@@ -11,7 +11,7 @@
   {{/if}}
   </div>
   <div class="card-content center-align">
-    <h5>{{title}}</h5>
+    <h5 class="story-title">{{title}}</h5>
     <p class="story-text">{{striptags (truncate body 100)}}</p>
     <br>
     <div class="chip">

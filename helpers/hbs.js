@@ -15,6 +15,9 @@ module.exports={
 
     },
     formatdate:function(date,format) {
-          return moment(date).format(format);
+          var stillUtc = moment.utc(date).toDate();
+          var local = moment(stillUtc).local().format(format);
+          //return moment(date).format(format);
+          return local;
     }
 }

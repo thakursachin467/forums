@@ -10,9 +10,12 @@ body {
 
 
 .story-text{
-  height: 100px;
+  height: 150px;
 }
 
+.story-title{
+  height: 50px;
+}
 
 .mb {
   margin-bottom: 10%;
