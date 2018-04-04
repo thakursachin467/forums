@@ -14,6 +14,17 @@ module.exports = function(app) {
 
           });
 
+          app.get('/posts/user/:id',(req,res)=>{
+                posts.find({user:req.params.id})
+                .populate('user')
+                .then((data)=>{
+                    console.log(data);
+                    res.render('posts/user',{
+                      data:data
+                    });
+                });
+          });
+
           app.get('/posts/my',ensureAuthenticated,(req,res)=>{
 
 
