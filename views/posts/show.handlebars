@@ -42,7 +42,7 @@
          <h5 class="card-title">{{commentbody}}</h5>
          <div class="chip">
            <img src="{{commentuser.image}}">
-           {{commentuser.firstname}} {{commentuser.lastname}}
+          <a href="/posts/user/{{commentuser.id}}"> {{commentuser.firstname}} {{commentuser.lastname}}</a>
          </div>
          <br>
          <small>Posted on:{{formatdate commentdate 'MMMM Do YYYY h:mm a'}}</small>
