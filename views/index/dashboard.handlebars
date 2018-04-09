@@ -25,7 +25,7 @@
                   <td> <span class="status">{{status}}</span> </td>
                   <td> <a href="/posts/edit/{{_id}}" class="btn left-align"><i class="fa fa-pencil"></i>edit</a>
                     <form action="/posts/{{_id}}?_method=DELETE" method="post" id="delete-form">
-                      <input type="hidden" name="_method" value="PUT">
+                      <input type="hidden" name="_method" value="DELETE">
                       <button type="submit" name="button" class="btn red"><i class="fa fa-remove"></i>Delete</button>
                     </form>
 
