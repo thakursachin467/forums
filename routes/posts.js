@@ -27,11 +27,12 @@ module.exports = function(app) {
           });
 
           app.get('/posts/my/:id',ensureAuthenticated,(req,res)=>{
+
                 posts.find({user:req.params.id})
                 .populate('user')
                 .sort({date:'desc'})
                 .then((data)=>{
-                  
+
                   res.render('posts/my',{
                     data:data
                   });
@@ -54,6 +55,7 @@ module.exports = function(app) {
           });
 
           app.get('/posts/edit/:id',ensureAuthenticated,(req,res)=>{
+
                   posts.findOne({_id:req.params.id})
                   .then((data)=>{
                     if(data.user != req.user.id){
@@ -70,13 +72,14 @@ module.exports = function(app) {
 
 
           app.put('/posts/edit/:id',ensureAuthenticated,(req,res)=>{
+
                   let allowComment;
                     if(req.body.allowcomments){
                         allowComment=true;
                         } else {
                           allowComment=false;
                         }
-                    posts.findOneAndUpdate(req.params.id,{
+                    posts.findOneAndUpdate({_id:req.params.id},{
                     title:req.body.title,
                     allowComments:allowComment,
                     status:req.body.status,
@@ -91,7 +94,8 @@ module.exports = function(app) {
 
 
           app.delete('/posts/:id',ensureAuthenticated, (req,res)=>{
-                  posts.findOneAndRemove(req.params.id)
+
+                  posts.findOneAndRemove({_id:req.params.id})
                   .then(()=>{
                       res.redirect('/dashboard');
                   });
