@@ -13,7 +13,7 @@ module.exports = function(passport) {
                   proxy:true
                 },(accessToken,refressToken,profile,done)=>{
                   //console.log(accessToken);
-                  
+
 
                   var image = profile.photos[0].value.substring(0,profile.photos[0].value.indexOf('?'));
                   var newuser = user({
