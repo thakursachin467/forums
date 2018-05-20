@@ -22,7 +22,7 @@
                       <textarea name="commentbody" rows="8"  class="materialize-textarea"></textarea>
                       <label >Add comment</label>
                   </div>
-                  <input type="submit" value="submit" class="comment" class="btn" disabled>
+                  <input type="submit" value="submit" class="btn waves-effect waves-light" style="display:none;">
             </form>
         {{else}}
 
@@ -67,16 +67,18 @@
 
 </div>
 <script type="text/javascript">
-$(document).ready(function(){
-    $(".comment").attr("disabled", "true");
-    $(".comment").blur(function(){
-        if ($(this).value.length> 0 && $(this).val() != "") {
-            $(".comment").removeAttr("disabled");
-        } else {
-            $(".comment").attr("disabled", "true");
+$(document).ready(function() {
+
+     $('.materialize-textarea').keyup(function() {
+        if($(this).val().length > 0) {
+        
+           $('.btn').css("display","inline-block");
         }
-    });
-});
+        else {
+           $('.btn').css("display","none");
+        }
+     });
+ });
 
 
 </script>
