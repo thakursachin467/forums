@@ -19,10 +19,10 @@
         {{#if user}}
             <form class="" action="/posts/comment/{{data._id}}" method="post">
                   <div class="input-field">
-                      <textarea name="commentbody" rows="8" class="materialize-textarea "></textarea>
+                      <textarea name="commentbody" rows="8"  class="materialize-textarea"></textarea>
                       <label >Add comment</label>
                   </div>
-                  <input type="submit" value="submit" class="btn">
+                  <input type="submit" value="submit" id="comment" class="btn" disabled>
             </form>
         {{else}}
 
@@ -66,3 +66,16 @@
   </div>
 
 </div>
+<script type="text/javascript">
+var dis1 = document.getElementById("comment");
+dis1.onchange = function () {
+ if ( this.value.length > 0) {
+		document.getElementById("comment").disabled = false;
+
+ }
+ else{
+	 	document.getElementById("teacher").disabled = true;
+ }
+}
+
+</script>
