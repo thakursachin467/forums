@@ -1,4 +1,5 @@
 var mongoose= require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 var schema = mongoose.Schema;
 var user= require('./user')
 
@@ -54,6 +55,6 @@ var postschema = new schema({
 
 });
 
-
+postschema.plugin(mongoosePaginate);
 var post =mongoose.model('posts',postschema,'posts');
 module.exports =post;
