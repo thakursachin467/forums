@@ -9,10 +9,10 @@
   "author": "Sachin Thakur",
   "license": "ISC",
   "dependencies": {
-    "cookie-parser": "^1.4.3",
-    "express": "^4.16.3",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.1",
     "express-handlebars": "^3.0.0",
-    "express-session": "^1.15.6",
+    "express-session": "^1.18.1",
     "express-sessions": "^1.0.6",
     "handlebars": "^4.7.7",
     "method-override": "^2.3.10",
